@@ -2,7 +2,7 @@ import { AiOutlineDelete } from 'react-icons/ai';
 import { toast } from "react-hot-toast";
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 
-import { deletePost } from '../../api/blog';
+import { deletePost } from '../../api';
 
 export const Card = ({blog, isHidden = false}) => {
     const queryClient = useQueryClient();
@@ -32,24 +32,17 @@ export const Card = ({blog, isHidden = false}) => {
         className="block h-[200px] object-cover rounded-t-xl w-full"
       />
       <div className="px-2 py-2 space-y-6">
-        <h1 className="text-center">{blog.title.length <10 ? blog.title : blog.title.substring(0, 16) + '...'}</h1>
-        <p>{blog.desc.length < 20 ? blog.desc : blog.desc.substring(0, 20) + '...'}</p>
-        <a
-          href=""
-          className="inline-block text-right text-naranja transition-colors hover:text-naranja/50"
-        >
-          {" "}
-          Leer más...
-        </a>
-        <div className="flex justify-between items-center">
-          <p className="font-bold capitalize">
+        <h2 className="text-center text-3xl">{blog.title.length < 15 ? blog.title : blog.title.substring(0, 18) + '...'}</h2>
+        <p>{blog.desc.length < 30 ? blog.desc + '.' : blog.desc.substring(0, 40) + ' ...'}</p>
+        <div className="flex items-center justify-between">
+          <p className="capitalize font-bold text-xl">
             Author:{" "}
-            <span className="bg-naranja/50 font-normal p-1 rounded-md transition-colors hover:bg-naranja">
+            <span className="bg-naranja/50 font-normal hover:bg-naranja p-1 rounded-md transition-colors">
               {blog.user.first_name} {blog.user.last_name}
             </span>
           </p>
           <AiOutlineDelete
-            className={`cursor-pointer ${isHidden ? 'hidden': ''} h-7 transition-colors w-7 hover:text-red-600`}
+            className={`cursor-pointer ${isHidden ? 'hidden': ''} hover:text-red-600 h-7 transition-colors w-7`}
             onClick={() => onDelete(blog.id)}
           />
         </div>

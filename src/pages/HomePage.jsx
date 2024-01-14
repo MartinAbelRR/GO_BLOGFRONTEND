@@ -1,9 +1,9 @@
-import { Header } from "../components/header/Header";
-import { Outlet } from "react-router-dom";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { getBlogs } from "../api/blog";
-import { useInView } from "react-intersection-observer";
+import { getPosts } from "../api";
+import { Header } from "../components";
 import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { Outlet } from "react-router-dom";
 
 export const HomePage = () => {
   const {ref, inView} = useInView()
@@ -14,7 +14,7 @@ export const HomePage = () => {
     fetchNextPage,
     hasNextPage } = useInfiniteQuery({
     queryKey: ["blogs"],
-    queryFn: ({pageParam = 1}) =>  getBlogs(pageParam),
+    queryFn: ({pageParam = 1}) =>  getPosts(pageParam),
     getNextPageParam: (pages) => {
       console.log(pages);
       if(pages.meta.last_page + 1 == pages.meta.page){
@@ -24,7 +24,6 @@ export const HomePage = () => {
     }
   });
   
-
   useEffect(() => {
     if(inView) {
       fetchNextPage();
@@ -36,7 +35,7 @@ export const HomePage = () => {
   return (
     <>
       <Outlet />
-      <Header data={blogs} hidden={true}/>
+      <Header data={blogs} hidden={true} />
     
       {!isLoading &&
         data?.pages?.length !== undefined &&

@@ -1,7 +1,9 @@
-import {useMutation} from '@tanstack/react-query'
-import {useNavigate} from "react-router-dom"
-import { TemplateAuth } from "../../templates/TemplateAuth"
 import { useForm } from "react-hook-form";
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from "react-router-dom";
+
+import { TemplateAuth } from "../../templates";
+
 import { loginRequest } from '../../api/users';
 
 export const LoginPage = () => {
@@ -14,7 +16,7 @@ export const LoginPage = () => {
   const loginMutation = useMutation({
     mutationFn:  (data) => loginRequest(data),
     onSuccess: () => {      
-      navigate("/");
+      navigate("/GO_BLOGFRONTEND/home");
     },
     onError: () => {
       
@@ -32,32 +34,35 @@ export const LoginPage = () => {
 
   return (
     <TemplateAuth>
-      <div className="gap-2 grid place-items-center max-w-xl self-center order-1 space-y-4 md:place-items-start md:-order-1">
-        <div className="flex flex-col items-center space-y-1 md:items-start">
+      <div className="flex flex-col gap-4 justify-center max-w-xl order-1 space-y-8 md:-order-1 md:space-y-20">
+        <div className="flex flex-col items-center space-y-1 md:items-start md:space-y-4">
           <h1>Create New Account</h1>
           <h2>¿Already Register?</h2>
         </div>
-        <p>
+        <div className='flex flex-col items-center h-40 space-y-6 md:items-start'>
+        <div className='border border-y-4 rounded-xl w-20'></div>
+        <p className='mt-8'>
           Discover a world of unlimited expression. Join to share your ideas,
           connect with other passionate people and build vibrant communities -
           register now!
         </p>
+          <button
+            className="bg-naranja border-white border-2 hover:bg-azul-oscuro max-w-72 py-3 rounded-md transition-colors w-52"
+            onClick={() => navigate("/GO_BLOGFRONTEND/register")}
+          >
+            ¡Register now!
+          </button>
+        </div>  
 
-        <button
-          className="backdrop-blur-2xl border-white border-2 hover:bg-naranja max-w-72 py-3 rounded-md transition-colors w-52"
-          onClick={() => navigate("/register")}
-        >
-          ¡Register now!
-        </button>
       </div>
 
       <form 
-        className="backdrop-blur-2xl flex flex-col gap-6 max-w-xl p-8 rounded-2xl self-center shadow-xl"
+        className="bg-gris-azulado/60 flex flex-col gap-6 justify-center max-w-xl p-8 rounded-2xl shadow-xl md:h-full"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h1 className="tracking-wide text-center">Login</h1>
+        <h1 className="text-center">Login</h1>
 
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2">
           <label htmlFor="email">EMAIL</label>
           <input
             className="bg-transparent"
@@ -69,7 +74,7 @@ export const LoginPage = () => {
             })}
           />
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2">
           <label htmlFor="password">PASSWORD</label>
           <input
             className="bg-transparent"
@@ -82,7 +87,7 @@ export const LoginPage = () => {
         </div>
 
         <button 
-          className="border-white border-2 hover:bg-naranja mt-6 py-3 rounded-md transition-colors"
+          className="bg-naranja border-white border-2 hover:bg-gris-azulado mt-6 py-3 rounded-md self-center transition-colors w-56"
         >
           Log in
         </button>

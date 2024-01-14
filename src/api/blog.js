@@ -1,7 +1,15 @@
-import { authAxi, axi } from "./useAxios"
+import { authAxi } from "./useAxios"
 
-export const getBlogs = async (page) => {
-    const response = await authAxi.get(`/api/allpost?page=${page}`)    
+export const createPost = async (body) => {
+    await authAxi.post('/api/post', {...body})    
+}
+
+export const deletePost = async (id) => {
+    await authAxi.delete(`/api/deletepost/${id}`)    
+}
+
+export const getPosts = async (page) => {
+    const response = await authAxi.get(`/api/allpost?page=${page}`)        
     return response.data
 }
 
@@ -11,12 +19,3 @@ export const getUniquePost = async () => {
 }
 
 
-export const createPost = async (body) => {
-    const response = await authAxi.post('/api/post', {...body})
-    return response.data
-}
-
-export const deletePost = async (id) => {
-    const response = await authAxi.delete(`/api/deletepost/${id}`)
-    return response.data
-}

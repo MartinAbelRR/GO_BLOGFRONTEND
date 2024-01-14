@@ -1,7 +1,7 @@
 
 export const Container = ({className, children}) => {
   return (
-    <div className={`${className} mx-auto max-w-screen-xl overflow-hidden w-[90%]`}>
+    <div className={`${className} max-w-screen-xl mx-auto overflow-hidden w-[90%]`}>
         {children}
     </div>    
   )

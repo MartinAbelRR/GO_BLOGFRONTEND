@@ -1,6 +1,6 @@
-import { NavBar } from "./NavBar"
-import { Container } from '../../templates/Container';
-import { Card } from '../utilities/Card';
+import { NavBar } from "./"
+import { Container } from '../../templates';
+import { Card } from '../utilities';
 
 export const Header = ({data, hidden}) => {  
   return (    
@@ -11,13 +11,13 @@ export const Header = ({data, hidden}) => {
           </Container>
         </section>
 
-        <section className="bg-custom py-4 pt-28 min-h-screen h-full">
+        <section className="bg-custom h-full min-h-screen py-4 pt-28">
           <Container>
             <div className='gap-4 grid grid-adaptable'>
               {data && data?.map(blog => (      
-                <Card key={blog.id} blog={blog} isHidden={hidden} />                           
+               <Card key={blog.id} blog={blog} isHidden={hidden} />                           
               ))}
-            </div>
+            </div> 
           </Container>
         </section>
     </header>

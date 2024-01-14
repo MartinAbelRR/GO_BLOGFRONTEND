@@ -7,18 +7,17 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        "background-image": "url(./images/bg-blue.jpg)",
+        'delete': "url('./assets/delete.svg')",
         "laptop-image": "url('./assets/background-form.jpg')",
         'menu-open': "url('./assets/menu.svg')",
-        'menu-close': "url('./assets/close.svg')",
-        'delete': "url('./assets/delete.svg')"
+        'menu-close': "url('./assets/close.svg')"        
       },
       colors: {
+        "azul": "#1B3DA6",
         "azul-oscuro": "#141A40",
         "azul-semioscuro": "#1D2659",
         "gris-azulado": "#495073",
-        "azul": "#1B3DA6",
-        "naranja": "#F26A4B",
+        "naranja": "#F26A4B"
       },
       fontFamily: {
         "roboto": "'Roboto', sans-serif"

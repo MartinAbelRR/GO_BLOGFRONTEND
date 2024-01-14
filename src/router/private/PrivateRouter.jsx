@@ -1,16 +1,15 @@
 import {  Navigate, Outlet } from 'react-router-dom';
-import { useAuthStore } from "../../store/auth";
 import { Toaster } from "react-hot-toast";
+import { useAuthStore } from "../../store";
 
 export const PrivateRouter = () => {
     const { isAuth } = useAuthStore();    
 
   return (
     isAuth ? <>
-      <Toaster/>  
-      <Outlet/>     
+      <Toaster/>      
+      <Outlet/>           
     </>
-    : <Navigate to={'/login'} 
-    />
+    : <Navigate to={'GO_BLOGFRONTEND/login'} />
   )
 }
